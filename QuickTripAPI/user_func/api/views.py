@@ -1,10 +1,8 @@
-# user_func/api/views.py
-
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from ..models import Account
-from .serializers import RegisterSerializer  # Zwróć uwagę na import lokalny
+from .serializers import RegisterSerializer
 
 
 class RegisterView(generics.GenericAPIView):
