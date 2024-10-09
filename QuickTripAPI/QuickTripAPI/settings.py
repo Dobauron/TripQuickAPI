@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "user_func",
-    'drf_spectacular'
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -77,10 +77,15 @@ WSGI_APPLICATION = "QuickTripAPI.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "trip_quick_db",
+        "USER": "dobs",
+        "PASSWORD": "mat",
+        "HOST": "localhost",  # lub adres serwera, jeśli używasz zdalnej bazy danych
+        "PORT": "5432",
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -125,14 +130,14 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Moje API',
-    'DESCRIPTION': 'Dokumentacja API dla mojego projektu',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    "TITLE": "Moje API",
+    "DESCRIPTION": "Dokumentacja API dla mojego projektu",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 SIMPLE_JWT = {
