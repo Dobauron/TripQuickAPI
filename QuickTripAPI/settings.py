@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["TripQuickAPI.onrender.com"]
+
 
 # Application definition
 
@@ -168,3 +169,5 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 }
 AUTH_USER_MODEL = "user_func.Account"
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
