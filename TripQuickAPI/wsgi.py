@@ -1,5 +1,5 @@
 """
-WSGI config for asd project.
+WSGI config for TripQuickAPI.settings project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

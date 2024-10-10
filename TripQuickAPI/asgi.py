@@ -1,5 +1,5 @@
 """
-ASGI config for asd project.
+ASGI config for TripQuickAPI project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
