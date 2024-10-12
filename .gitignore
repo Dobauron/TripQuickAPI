@@ -1,3 +1,7 @@
 .venv
 misc.xml
 vcs.xml
+/.env
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/TripQuickAPI.iml
