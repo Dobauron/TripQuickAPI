@@ -13,9 +13,7 @@ class TripViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = Trip.objects.filter(
-            account=user
-        )
+        queryset = Trip.objects.filter(account=user)
         return queryset
 
     def perform_create(self, serializer):
