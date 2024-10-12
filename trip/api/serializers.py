@@ -7,9 +7,9 @@ class TripSerializer(serializers.ModelSerializer):
         model = Trip
         fields = [
             "id",
-            "travel_place",
+            "locality",
             "description",
-            "travel_start_at",
-            "travel_end_at",
+            "start_at",
+            "end_at",
         ]
         read_only_fields = ["account"]

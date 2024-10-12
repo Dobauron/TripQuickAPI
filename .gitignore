@@ -5,3 +5,4 @@ vcs.xml
 /.idea/modules.xml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/TripQuickAPI.iml
+/.idea/.gitignore
