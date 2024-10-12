@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class Trip(models.Model):
-    place = models.CharField(max_length=255, null=False, blank=False)
+    locality = models.CharField(max_length=255, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField(blank=True)
