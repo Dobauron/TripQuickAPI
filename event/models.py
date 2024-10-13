@@ -18,10 +18,9 @@ class Event(models.Model):
     ]
 
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name="events")
-    # Wspólne pola dla wszystkich wydarzeń
-    name = models.CharField(max_length=255, help_text="Nazwa wydarzenia")
-    start_date = models.DateTimeField(help_text="Data rozpoczęcia wydarzenia")
-    end_date = models.DateTimeField(help_text="Data zakończenia wydarzenia")
+    name = models.CharField(max_length=255)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     attachment = models.FileField(
         upload_to="event_attachments/",
         blank=True,
@@ -38,6 +37,7 @@ class Event(models.Model):
 
     # Typ wydarzenia
     event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
+    event_sub_type = models.CharField(max_length=50, default="default")
 
     def __str__(self):
         return f"{self.name} ({self.event_type})"
@@ -46,31 +46,17 @@ class Event(models.Model):
         ordering = ["trip", "start_date"]
 
 
-class ServiceType(models.Model):
-    TRANSPORT_CHOICES = [
-        ("bus", "Bus"),
-        ("airplane", "Airplane"),
-        ("train", "Train"),
-        ("car", "Car"),
-        ("boat", "Boat"),
-        ("other", "Other"),
+class EventSubType(models.Model):
+    EVENT_TYPE_CHOICES = [
+        ("TRANSPORT", "Transport"),
+        ("ACCOMMODATION", "Zakwaterowanie"),
+        ("VEHICLE_RENTAL", "Wypożyczenie pojazdu"),
+        ("ACTIVITIES", "Aktywności"),
+        ("OTHER", "Inne"),
     ]
-    ACCOMODATION_CHOICES = [
-        ("hotel", "Hotel"),
-        ("camping", "Camping"),
-        ("apartment", "Apartment"),
-        ("other", "Other"),
-    ]
-    VEHICALES_CHOICES = [
-        ("hotel", "Hotel"),
-        ("camping", "Camping"),
-        ("apartment", "Apartment"),
-        ("other", "Other"),
-    ]
-
-    service_type = models.CharField(max_length=50)
-    event = models.OneToOneField(Event, on_delete=models.CASCADE)
-    service_picture = models.FileField(null=True, blank=True)
+    event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
+    event_sub_type = models.CharField(max_length=50)
+    img_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return self.service_type
+        return self.event_type
