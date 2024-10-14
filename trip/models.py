@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class Trip(models.Model):
-    locality = models.CharField(max_length=255, null=False, blank=False)
+    destination = models.CharField(max_length=255, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField(blank=True)
@@ -13,7 +13,7 @@ class Trip(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.place
+        return self.destination
 
     def clean(self):
         if self.end_at < self.start_at:
