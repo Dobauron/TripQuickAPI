@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "user_func",
     "drf_spectacular",
     "trip",
+    "event",
 ]
 
 MIDDLEWARE = [
