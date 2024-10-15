@@ -7,7 +7,7 @@ class TripSerializer(serializers.ModelSerializer):
         model = Trip
         fields = [
             "id",
-            "locality",
+            "destination",
             "description",
             "start_at",
             "end_at",
