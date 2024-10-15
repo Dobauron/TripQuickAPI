@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Event, EventSubType
+from ..models import Event, EventSubType, EventLabel
 
 
 class EventSubTypeSerializer(serializers.ModelSerializer):
@@ -7,6 +7,10 @@ class EventSubTypeSerializer(serializers.ModelSerializer):
         model = EventSubType
         fields = ["event_type", "event_sub_type", "img_url"]
 
+class EventLabelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventLabel
+        fields = ["event_type", "event_label", "img_url"]
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
