@@ -1,8 +1,9 @@
 from django.db import models
 from trip.models import Trip
+from django.utils.translation import gettext_lazy as _
 
 
-class Event(models.Model):
+class BaseEvent(models.Model):
     TRANSPORT = "transport"
     ACCOMMODATION = "accommodation"
     VEHICLE_RENTAL = "vehicle_rental"
@@ -10,13 +11,20 @@ class Event(models.Model):
     OTHER = "other"
 
     EVENT_TYPE_CHOICES = [
-        (TRANSPORT, "Transport"),
-        (ACCOMMODATION, "Zakwaterowanie"),
-        (VEHICLE_RENTAL, "Wypożyczenie pojazdu"),
-        (ACTIVITIES, "Aktywności"),
-        (OTHER, "Inne"),
+        (TRANSPORT, _("Transport")),
+        (ACCOMMODATION, _("Zakwaterowanie")),
+        (VEHICLE_RENTAL, _("Wypożyczenie pojazdu")),
+        (ACTIVITIES, _("Aktywności")),
+        (OTHER, _("Inne")),
     ]
 
+    event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
+
+    class Meta:
+        abstract = True
+
+
+class Event(BaseEvent):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name="events")
     name = models.CharField(max_length=255)
     start_date = models.DateTimeField()
@@ -31,8 +39,6 @@ class Event(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     notes = models.TextField(blank=True, null=True)
 
-    # Typ wydarzenia
-    event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
     event_sub_type = models.CharField(max_length=50)
 
     def __str__(self):
@@ -42,17 +48,17 @@ class Event(models.Model):
         ordering = ["trip", "start_date"]
 
 
-class EventSubType(models.Model):
-    EVENT_TYPE_CHOICES = [
-        ("TRANSPORT", "Transport"),
-        ("ACCOMMODATION", "Zakwaterowanie"),
-        ("VEHICLE_RENTAL", "Wypożyczenie pojazdu"),
-        ("ACTIVITIES", "Aktywności"),
-        ("OTHER", "Inne"),
-    ]
-    event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
+class EventSubType(BaseEvent):
     event_sub_type = models.CharField(max_length=50)
     img_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.event_type
+
+
+class EventLabel(BaseEvent):
+    event_label = models.CharField(max_length=50)
+    img_url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.event_label
