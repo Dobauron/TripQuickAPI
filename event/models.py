@@ -19,6 +19,8 @@ class BaseEvent(models.Model):
     ]
 
     event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
+    img_url = models.URLField(null=True, blank=True)
+    event_sub_type = models.CharField(max_length=50)
 
     class Meta:
         abstract = True
@@ -39,7 +41,7 @@ class Event(BaseEvent):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     notes = models.TextField(blank=True, null=True)
 
-    event_sub_type = models.CharField(max_length=50)
+    img_url = None
 
     def __str__(self):
         return f"{self.name} ({self.event_type})"
@@ -48,17 +50,14 @@ class Event(BaseEvent):
         ordering = ["trip", "start_date"]
 
 
-class EventSubType(BaseEvent):
-    event_sub_type = models.CharField(max_length=50)
-    img_url = models.URLField(null=True, blank=True)
+class EventSubLabel(BaseEvent):
 
     def __str__(self):
-        return self.event_type
+        return self.event_sub_type
 
 
 class EventLabel(BaseEvent):
-    event_label = models.CharField(max_length=50)
-    img_url = models.URLField(null=True, blank=True)
+    event_sub_type = None
 
     def __str__(self):
-        return self.event_label
+        return self.event_type

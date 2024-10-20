@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from ..models import Event, EventSubType, EventLabel
-from .serializers import EventSerializer, EventSubTypeSerializer, EventLabelSerializer
+from ..models import Event, EventSubLabel, EventLabel
+from .serializers import EventSerializer, EventSubLabelSerializer, EventLabelSerializer
 from rest_framework.generics import ListAPIView
 
 
@@ -9,9 +9,10 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
 
 
-class EventSubTypeAPIView(ListAPIView):
-    queryset = EventSubType.objects.all()
-    serializer_class = EventSubTypeSerializer
+class EventSubLabelAPIView(ListAPIView):
+    queryset = EventSubLabel.objects.all()
+    serializer_class = EventSubLabelSerializer
+
 
 class EventLabelAPIView(ListAPIView):
     queryset = EventLabel.objects.all()
