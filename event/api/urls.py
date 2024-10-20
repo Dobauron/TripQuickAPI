@@ -7,6 +7,6 @@ router.register(r"", EventViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("sub-labels/", EventSubLabelAPIView.as_view(), name="event-subtypes"),
-    path("labels/", EventLabelAPIView.as_view(), name="event-label"),
+    path("sub-types/", EventSubLabelAPIView.as_view(), name="event-subtypes"),
+    path("types/", EventLabelAPIView.as_view(), name="event-label"),
 ]
