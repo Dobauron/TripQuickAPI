@@ -28,7 +28,7 @@ class BaseEvent(models.Model):
 
 class Event(BaseEvent):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name="events")
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     attachment = models.FileField(
@@ -36,11 +36,11 @@ class Event(BaseEvent):
         blank=True,
         null=True,
         help_text="Załącznik wydarzenia",
+        
     )
     links = models.URLField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    notes = models.TextField(blank=True, null=True)
-
+    notes = models.TextField(blank=True)
     img_url = None
 
     def __str__(self):
