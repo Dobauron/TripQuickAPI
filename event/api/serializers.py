@@ -22,7 +22,7 @@ class EventSerializer(serializers.ModelSerializer):
             "name",
             "start_date",
             "end_date",
-            "attachment",
+            "attachments",
             "links",
             "price",
             "notes",
