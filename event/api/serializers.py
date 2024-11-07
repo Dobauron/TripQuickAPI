@@ -11,7 +11,7 @@ class EventSubLabelSerializer(serializers.ModelSerializer):
 class EventLabelSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventLabel
-        fields = ["event_type",  "img_url"]
+        fields = ["event_type", "img_url"]
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class EventSerializer(serializers.ModelSerializer):
             "name",
             "start_date",
             "end_date",
-            "attachment",
+            "attachments",
             "links",
             "price",
             "notes",

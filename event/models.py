@@ -31,17 +31,17 @@ class Event(BaseEvent):
     name = models.CharField(max_length=255, blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    attachment = models.FileField(
-        upload_to="event_attachments/",
-        blank=True,
-        null=True,
-        help_text="Załącznik wydarzenia",
-        
-    )
-    links = models.URLField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     notes = models.TextField(blank=True)
     img_url = None
+    links = models.JSONField(
+        default=list, blank=True, help_text="List of links associated with the event"
+    )
+    attachments = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="List of attachments associated with the event",
+    )
 
     def __str__(self):
         return f"{self.name} ({self.event_type})"
