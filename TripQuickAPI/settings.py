@@ -81,11 +81,11 @@ WSGI_APPLICATION = "TripQuickAPI.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-if os.getenv('RENDER_EXTERNAL_HOSTNAME'):
+if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
     DATABASES = {
         "default": dj_database_url.config(
             default=os.environ.get("DATABASE_URL"),
-            engine="django.db.backends.postgresql"
+            engine="django.db.backends.postgresql",
         )
     }
 else:
