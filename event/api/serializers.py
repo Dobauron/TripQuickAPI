@@ -3,26 +3,12 @@ from ..models import Event, EventSubLabel, EventLabel
 
 
 class EventSubLabelSerializer(serializers.ModelSerializer):
-    def validate_img_url(self, value):
-        if not value.startswith("http://") and not value.startswith("https://"):
-            raise serializers.ValidationError(
-                "URL obrazu musi zaczynać się od http:// lub https://."
-            )
-        return value
-
     class Meta:
         model = EventSubLabel
         fields = ["event_type", "event_sub_type", "img_url"]
 
 
 class EventLabelSerializer(serializers.ModelSerializer):
-    def validate_img_url(self, value):
-        if not value.startswith("http://") and not value.startswith("https://"):
-            raise serializers.ValidationError(
-                "URL obrazu musi zaczynać się od http:// lub https://."
-            )
-        return value
-
     class Meta:
         model = EventLabel
         fields = ["event_type", "img_url"]

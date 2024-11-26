@@ -4,6 +4,7 @@ from .serializers import EventSerializer, EventSubLabelSerializer, EventLabelSer
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
+
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
