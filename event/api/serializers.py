@@ -15,6 +15,10 @@ class EventLabelSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
+    price = serializers.DecimalField(
+        max_digits=10, decimal_places=2, coerce_to_string=False
+    )
+
     class Meta:
         model = Event
         fields = [
