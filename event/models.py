@@ -50,13 +50,15 @@ class Event(BaseEvent):
         ordering = ["trip", "start_date"]
 
 
-class EventSubLabel(BaseEvent):
-    def __str__(self):
-        return self.event_sub_type
-
-
 class EventLabel(BaseEvent):
     event_sub_type = None
 
     def __str__(self):
         return self.event_type
+
+
+class EventSubLabel(BaseEvent):
+    event_label = models.ForeignKey(EventLabel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.event_sub_type
