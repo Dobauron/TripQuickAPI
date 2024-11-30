@@ -51,7 +51,6 @@ class Event(BaseEvent):
 
 
 class EventSubLabel(BaseEvent):
-
     def __str__(self):
         return self.event_sub_type
 
