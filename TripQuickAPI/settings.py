@@ -86,6 +86,7 @@ if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
         "default": dj_database_url.config(
             default=os.environ.get("DATABASE_URL"),
             engine="django.db.backends.postgresql",
+            ssl_require=True
         )
     }
 else:
