@@ -81,12 +81,13 @@ WSGI_APPLICATION = "TripQuickAPI.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# aby polaczyc sie z baza na renderze musze ustawic RENDER_EXTERNAL_HOSTNAME = True w pliku .env
 if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
     DATABASES = {
         "default": dj_database_url.config(
             default=os.environ.get("DATABASE_URL"),
             engine="django.db.backends.postgresql",
-            ssl_require=True
+            ssl_require=True,
         )
     }
 else:
