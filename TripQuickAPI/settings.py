@@ -82,25 +82,40 @@ WSGI_APPLICATION = "TripQuickAPI.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 # aby polaczyc sie z baza na renderze musze ustawic RENDER_EXTERNAL_HOSTNAME = True w pliku .env
-if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
-    DATABASES = {
-        "default": dj_database_url.config(
+
+DATABASES = {
+    "default": {
+        **dj_database_url.config(
             default=os.environ.get("DATABASE_URL"),
             engine="django.db.backends.postgresql",
             ssl_require=True,
-        )
+        ),
+        # Dodaj te dane w razie potrzeby ręcznej konfiguracji:
+        "NAME": os.environ.get("DB_NAME", "default_db_name"),  # Nazwa bazy danych
+        "USER": os.environ.get("DB_USER", "default_user"),      # Użytkownik bazy danych
+        "PASSWORD": os.environ.get("DB_PASSWORD", "default_password"),  # Hasło do bazy danych
+        "PORT": os.environ.get("DB_PORT", "5432"),             # Port (domyślnie 5432 dla PostgreSQL)
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get("DB_NAME"),
-            "USER": os.environ.get("DB_USER"),
-            "PASSWORD": os.environ.get("DB_PASSWORD"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),
-            "PORT": os.environ.get("DB_PORT", "5432"),
-        }
-    }
+}
+# if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             default=os.environ.get("DATABASE_URL"),
+#             engine="django.db.backends.postgresql",
+#             ssl_require=True,
+#         )
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": os.environ.get("DB_NAME"),
+#             "USER": os.environ.get("DB_USER"),
+#             "PASSWORD": os.environ.get("DB_PASSWORD"),
+#             "HOST": os.environ.get("DB_HOST", "localhost"),
+#             "PORT": os.environ.get("DB_PORT", "5432"),
+#         }
+#     }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
