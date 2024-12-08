@@ -9,6 +9,7 @@ class BaseEvent(models.Model):
     VEHICLE_RENTAL = "vehicle_rental"
     ACTIVITIES = "activities"
     OTHER = "other"
+    INSURANCE = "insurance"
 
     EVENT_TYPE_CHOICES = [
         (TRANSPORT, _("Transport")),
@@ -16,11 +17,12 @@ class BaseEvent(models.Model):
         (VEHICLE_RENTAL, _("Wypożyczenie pojazdu")),
         (ACTIVITIES, _("Aktywności")),
         (OTHER, _("Inne")),
+        (INSURANCE, _("Ubezpieczenie")),
     ]
 
     event_type = models.CharField(max_length=50, choices=EVENT_TYPE_CHOICES)
     img_url = models.URLField(null=True, blank=True)
-    event_sub_type = models.CharField(max_length=50)
+    event_sub_type = models.CharField(max_length=50, null=True)
 
     class Meta:
         abstract = True
