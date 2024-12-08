@@ -61,4 +61,4 @@ class EventLabel(BaseEvent):
     event_sub_type = None
 
     def __str__(self):
-        return self.event_type, self.event_sub_type
+        return self.event_type
